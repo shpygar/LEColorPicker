@@ -9,6 +9,7 @@
 #import "LEColorPicker.h"
 #import "UIImage+LEColorPicker.h"
 #import "UIColor+YUVSpace.h"
+#import "UIColor+Tools.h"
 
 #define LECOLORPICKER_DEFAULT_SCALED_SIZE                               36      //px
 #define LECOLORPICKER_DEFAULT_DOMINANTS_TRESHOLD                        0.1     //Distance in YUV Space
@@ -49,6 +50,7 @@
     
     if ([colorSchemeArray count]>=1 ) {
         backgroundColor = [colorSchemeArray objectAtIndex:0];
+        backgroundColor = [backgroundColor colorByChangingAlphaTo:1.0f];
         NSLog(@"First dominant color : %@",[backgroundColor description]);
         [colorsDictionary setObject:backgroundColor forKey:@"BackgroundColor"];
     }
