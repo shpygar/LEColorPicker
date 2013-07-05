@@ -11,10 +11,10 @@
 #import "UIColor+YUVSpace.h"
 #import "UIColor+Tools.h"
 
-#define LECOLORPICKER_DEFAULT_SCALED_SIZE                               36      //px
+#define LECOLORPICKER_DEFAULT_SCALED_SIZE                               50      //px
 #define LECOLORPICKER_DEFAULT_DOMINANTS_TRESHOLD                        0.1     //Distance in YUV Space
-#define LECOLORPICKER_DEFAULT_NUM_OF_DOMINANTS                          3
-#define LECOLORPICKER_DEFAULT_COLOR_DIFFERENCE                          0.75
+#define LECOLORPICKER_DEFAULT_NUM_OF_DOMINANTS                          4
+#define LECOLORPICKER_DEFAULT_COLOR_DIFFERENCE                          0.15
 #define LECOLORPICKER_DEFAULT_BRIGHTNESS_DIFFERENCE                     0.125
 
 @implementation LEColorPicker
@@ -57,6 +57,7 @@
     
     if ([colorSchemeArray count]>=2 ) {
         primaryTextColor = [colorSchemeArray objectAtIndex:1];
+        primaryTextColor = [primaryTextColor colorByChangingAlphaTo:1.0f];
         NSLog(@"Second dominant color : %@",[primaryTextColor description]);
         if ([LEColorPicker isSufficienteContrastBetweenBackground:backgroundColor
                                                      andForground:primaryTextColor]) {
@@ -80,6 +81,7 @@
     
     if ([colorSchemeArray count]>=3 ) {
         secondaryTextColor = [colorSchemeArray objectAtIndex:2];
+        secondaryTextColor = [secondaryTextColor colorByChangingAlphaTo:1.0f];
         NSLog(@"Third dominant color : %@",[secondaryTextColor description]);
         if ([LEColorPicker isSufficienteContrastBetweenBackground:backgroundColor
                                                      andForground:secondaryTextColor]) {
@@ -105,6 +107,7 @@
     NSTimeInterval timeDifference = [endDate timeIntervalSinceDate:startDate];
     double timePassed_ms = timeDifference * -1000.0;
     NSLog(@"Computation time: %f", timePassed_ms);
+    
     return colorsDictionary;
 }
 
